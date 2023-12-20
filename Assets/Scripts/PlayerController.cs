@@ -8,6 +8,17 @@ public class PlayerComponent : MonoBehaviour {
     public float speed;
     public float jumpForce;
     private float moveInput;
+    public int health = 100;
+    public int damage = 10;
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+            enemy.TakeDamage(damage);
+        }
+    }
 
     private Rigidbody2D rb;
 
